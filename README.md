@@ -15,7 +15,7 @@
 # 1. Team Identity
 
 ## 1.1 Studio / Group Name
-`[biatch ass]`
+`[shandu]`
 
 ## 1.2 Team Members
 
