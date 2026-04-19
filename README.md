@@ -729,7 +729,23 @@ What did you learn about:
 - integration?
 
 **Response:**  
-`[Write here]`
+`[**Response:**
+
+**Electronics**
+Learned how to wire components properly, manage sensors, and maintain consistent system performance
+
+**Coding**
+Understood how to translate user input into physical actions and handle real-time control and debugging
+
+**Mechanisms**
+Worked on controlling flow and movement using servos, focusing on precision and consistency
+
+**Fabrication**
+Learned to build and assemble parts accurately so the system remains stable and functional
+
+**Integration**
+Understood how to bring together app control, electronics, and physical components into one seamless working system
+]`
 
 ## 19.3 Design Reflection
 What did you learn about:
@@ -741,13 +757,27 @@ What did you learn about:
 - iteration?
 
 **Response:**  
-`[Write here]`
+`[Designing for play
+Play works best when the system is open-ended and not over-instructed. Giving users freedom to explore without fixed outcomes keeps them engaged longer.
+
+Delight
+Delight comes from timing and surprise. The moment of reaction and the unexpected result create the strongest impact
+
+Clarity
+The interaction has to be immediately understandable. If users hesitate or feel confused about what to do, the experience breaks
+
+Physical interaction
+Tangible elements make the experience feel real and immersive. Seeing actual movement, flow, and reaction adds weight compared to a purely digital interaction. 
+
+Iteration
+Small adjustments in timing, flow, and responsiveness make a big difference. Repeated testing helps refine both the technical system and the overall experience.]`
 
 ## 19.4 If You Had One More Week
 What would you improve next?
 
 **Response:**  
-`[Write here]`
+`[**Response:**
+We would improve the precision and consistency of the dispensing system to achieve more controlled outcomes, expand the range of possible inputs to create more varied results, and refine the overall interaction by making the app interface smoother and the system response more immediate and reliable. ]`
 
 ---
 
