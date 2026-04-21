@@ -1,1 +1,112 @@
+from machine import Pin
+from neopixel import NeoPixel
+from Servo import Servo
+import time
 
+#LED STRIP
+strip = NeoPixel(Pin(21, Pin.OUT), 70)
+
+#SERVOS
+servo1 = Servo(Pin(18, Pin.OUT))
+servo2 = Servo(Pin(14, Pin.OUT))
+servo3 = Servo(Pin(23, Pin.OUT))   
+
+#BUTTONS
+button1 = Pin(4, Pin.IN, Pin.PULL_UP)
+button2 = Pin(5, Pin.IN, Pin.PULL_UP)
+
+#COLORS
+PINK = (245, 20, 165)
+OFF = (20, 20, 20)
+ 
+angle1 = 0
+angle2 = 180
+
+last_button1 = 1
+last_button2 = 1
+
+STEP = 10
+led_done = False
+
+# FUNCTIONS
+def clear():
+    for i in range(70):
+        strip[i] = OFF
+    strip.write()
+
+def servo3_sweep():
+    for i in range(0,180):
+        servo3.write_angle(i)
+        time.sleep(0.05)
+
+def pink_chase_and_reaction():
+    # LED ON
+    for i in range(70):
+        strip[i] = PINK
+        strip.write()
+        time.sleep(0.04)
+
+    # LED OFF
+    for i in range(70):
+        strip[i] = OFF
+        strip.write()
+        time.sleep(0.10)
+
+   
+    servo3_sweep()
+
+# START
+clear()
+servo1.write_angle(angle1)
+servo2.write_angle(angle2)
+servo3.write_angle(0)
+
+# LOOP
+while True:
+ 
+    current1 = button1.value()
+    current2 = button2.value()
+
+    # RESET
+    if current1 == 0 and current2 == 0:
+        angle1 = 0
+        angle2 = 180
+
+        servo1.write_angle(angle1)
+        servo2.write_angle(angle2)
+        servo3.write_angle(0)
+
+        led_done = False
+        clear()
+
+        time.sleep(0.3)
+        continue
+
+    #BUTTON 1 
+    if last_button1 == 1 and current1 == 0:
+        angle1 += STEP
+        if angle1 > 100:
+            angle1 = 100
+        print("Servo1 angle:", angle1)
+
+    last_button1 = current1
+
+    # BUTTON 2 
+    if last_button2 == 1 and current2 == 0:
+        angle2 -= STEP
+        if angle2 < 70:
+            angle2 = 70
+        print("Servo2 angle:", angle2)
+
+    last_button2 = current2
+
+    
+    servo1.write_angle(angle1)
+    servo2.write_angle(angle2)
+
+    # TRIGGER
+    if (angle1 == 100 and angle2 == 70 and not led_done):
+        pink_chase_and_reaction()
+        led_done = True
+
+    time.sleep(0.05)
