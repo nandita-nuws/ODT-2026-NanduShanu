@@ -1,0 +1,57 @@
+rom Servo import Servo
+import time
+from machine import Pin
+
+
+servo1 = Servo(Pin(18, Pin.OUT))
+button1 = Pin(4, Pin.IN, Pin.PULL_UP)
+
+servo2 = Servo(Pin(19, Pin.OUT))
+button2 = Pin(5, Pin.IN, Pin.PULL_UP)
+
+
+angle1 = 0
+angle2 = 180
+
+last_button1 = 1
+last_button2 = 1
+
+STEP = 10
+
+# LOOP
+while True:
+
+    current1 = button1.value()
+    current2 = button2.value()
+
+    # RESET (BOTH BUTTONS PRESSED) 
+    if current1 == 0 and current2 == 0:
+        print("RESET")
+        angle1 = 0
+        angle2 = 180
+        time.sleep(0.3)  # small delay to avoid multiple resets
+
+    else:
+        # SERVO 1 CONTROL 
+        if last_button1 == 1 and current1 == 0:
+            angle1 += STEP
+            if angle1 > 120:
+                angle1 = 120
+            print("Servo1 angle:", angle1)
+
+        # SERVO 2 CONTROL 
+        if last_button2 == 1 and current2 == 0:
+            angle2 -= STEP
+            if angle2 < 60:
+                angle2 = 6/0
+            print("Servo2 angle:", angle2)
+
+    # update last states
+    last_button1 = current1
+    last_button2 = current2
+
+    # apply angles
+    servo1.write_angle(angle1)
+    servo2.write_angle(angle2)
+
+    time.sleep(0.05)
